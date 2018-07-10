@@ -1,7 +1,7 @@
-#Queries as solutions for https://www.jitbit.com/news/181-jitbits-sql-interview-questions/
-#Queries have been tested on MySQL 8.0.11 and output was as displayed
+-- Queries as solutions for https://www.jitbit.com/news/181-jitbits-sql-interview-questions/
+-- Queries have been tested on MySQL 8.0.11 and output was as displayed
 
-#1. List employees (names) who have a bigger salary than their boss.
+-- 1. List employees (names) who have a bigger salary than their boss.
 SELECT EMP.NAME 
 FROM EMPLOYEES EMP JOIN EMPLOYEES BOSS ON EMP.BOSSID=BOSS.EMPLOYEEID
 WHERE EMP.SALARY > BOSS.SALARY;
@@ -13,7 +13,7 @@ WHERE EMP.SALARY > BOSS.SALARY;
 +------------------+
 
 
-#2. List employees who have the biggest salary in their departments.
+-- 2. List employees who have the biggest salary in their departments.
 SELECT NAME, EMP.DEPARTMENTID
 FROM EMPLOYEES AS EMP
 JOIN (SELECT DEPARTMENTID, MAX(SALARY) AS SALARY
@@ -38,7 +38,7 @@ ON EMP.DEPARTMENTID=MS.DEPARTMENTID AND EMP.SALARY=MS.SALARY;
 | Charles Franklin |           12 |
 +------------------+--------------+
 
-#3. List departments that have less than 3 people in it.
+-- 3. List departments that have less than 3 people in it.
 SELECT DEP.NAME
 FROM DEPARTMENTS DEP JOIN (SELECT DEPARTMENTID, COUNT(*) AS COUNT
 						FROM EMPLOYEES
@@ -56,7 +56,7 @@ WHERE EMPS.COUNT <3;
 | Janitorial      |
 +-----------------+
 
-#4. List all departments along with the number of people there (tricky - people often do an "inner join" leaving out empty departments)
+-- 4. List all departments along with the number of people there (tricky - people often do an "inner join" leaving out empty departments)
 SELECT dep.name, ifnull(emps.count, 0)  as count
 FROM departments dep LEFT JOIN (SELECT DEPARTMENTID, COUNT(*) AS COUNT
 								FROM EMPLOYEES
@@ -81,7 +81,7 @@ ON dep.departmentid=emps.departmentid;
 | Doctoral        |     0 |
 +-----------------+-------+
 
-#5. List employees that dont have a boss in the same department.
+-- 5. List employees that dont have a boss in the same department.
 SELECT EMP.NAME
 FROM EMPLOYEES EMP JOIN EMPLOYEES BOSS
 ON EMP.BOSSID=BOSS.EMPLOYEEID
@@ -111,7 +111,7 @@ WHERE BOSS.DEPARTMENTID <> EMP.DEPARTMENTID;
 | Charles Franklin  |
 +-------------------+
 
-#6. List all departments along with the salary there.
+-- 6. List all departments along with the salary there.
 SELECT DEP.NAME, IFNULL(SUM(EMP.SALARY),0) AS TOTALSALARY
 FROM EMPLOYEES EMP right JOIN DEPARTMENTS DEP ON EMP.DEPARTMENTID=DEP.DEPARTMENTID
 GROUP BY DEP.NAME;
