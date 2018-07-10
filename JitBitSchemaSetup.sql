@@ -1,6 +1,6 @@
-#This has been tested in MySQL 8.0.11
-# Schema based on description in https://www.jitbit.com/news/181-jitbits-sql-interview-questions/
-# Most of the data was sourced from http://www.sqltutorial.org/sql-sample-database/ with some modification so as to fit current schema.
+-- This has been tested in MySQL 8.0.11
+-- Schema based on description in https://www.jitbit.com/news/181-jitbits-sql-interview-questions/
+-- Most of the data was sourced from http://www.sqltutorial.org/sql-sample-database/ with some modification so as to fit current schema.
 
 
 CREATE DATABASE JITBIT;
